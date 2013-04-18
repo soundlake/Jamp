@@ -1,0 +1,49 @@
+package Jamp;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+
+public class PlayerGUI extends JFrame{
+	private static final long serialVersionUID = 3987374733901113836L;
+	
+	public PlayerGUI(){
+		setTitle("Jamp - winamp like mp3 player");
+		setSize(300, 150);
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		init();
+	}
+	public void init(){
+		JPanel panel = new JPanel();
+		getContentPane().add(panel);
+		
+		panel.setLayout(null);
+		
+		addQuitButton(panel);
+	}
+	public void addQuitButton(JPanel panel){
+		JButton quitButton = new JButton("quit");
+		quitButton.setBounds(220, 120, 80, 30);
+		quitButton.setToolTipText("click this to quit");
+		quitButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent event){
+				System.exit(0);
+			}
+		});
+		
+		panel.add(quitButton);
+	}
+	public static void main(String[] args){
+		SwingUtilities.invokeLater(new Runnable(){
+			public void run(){
+				PlayerGUI player = new PlayerGUI();
+				player.setVisible(true);
+			}
+		});
+	}
+}

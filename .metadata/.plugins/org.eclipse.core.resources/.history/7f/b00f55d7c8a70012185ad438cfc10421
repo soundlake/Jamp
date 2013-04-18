@@ -1,0 +1,14 @@
+package Jamp;
+
+import javax.swing.*;
+
+public class PlayerGUI extends JFrame{
+	private static final long serialVersionUID = 3987374733901113836L;
+
+	public PlayerGUI(){
+		setTitle("Jamp - winamp like mp3 player");
+		setSize(300, 150);
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+	}
+}
