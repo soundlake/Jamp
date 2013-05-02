@@ -1,0 +1,23 @@
+package jamp;
+
+public interface Player {
+	// play
+	abstract public boolean isPlaying();
+	abstract public void play();
+	abstract public void pause();
+	abstract public void stop();
+	abstract public void prev();
+	abstract public void next();
+	abstract public void fastForward();
+	abstract public void rewind();
+	
+	// file manage
+	abstract public void open();
+	abstract public void close();
+	
+	// application manage
+	abstract public void help();
+	abstract public void bugreport();
+	abstract public void about();
+	abstract public void quit();
+}
