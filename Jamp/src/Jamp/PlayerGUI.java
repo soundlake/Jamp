@@ -15,7 +15,7 @@ import javax.swing.SwingUtilities;
 public class PlayerGUI extends JFrame{
 	private static final long serialVersionUID = 3987374733901113836L;
 	
-	protected Player player;
+	protected Player player = new PlayerConcrete();
 	protected JMenuBar menubar = new JMenuBar();
 	public PlayerGUI(){
 		setTitle("Jamp - winamp like mp3 player");
@@ -210,16 +210,16 @@ public class PlayerGUI extends JFrame{
 		addQuitButton(panel, 220, 80, 80, 30);
 	}
 	public void addPlayPauseButton(JPanel panel, int x, int y, int w, int h){
-		final JButton button = new JButton("play");
+		final JButton button = new JButton("▶");
 		button.setBounds(x, y, w, h);
 		button.setToolTipText("click this to play/pause");
 		button.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
 				if(player.isPlaying()){
-					button.setName("play");
+					button.setText("▶");
 					player.pause();
 				} else {
-					button.setName("pause");
+					button.setText("Ⅱ");
 					player.play();					
 				}
 			}
@@ -228,7 +228,7 @@ public class PlayerGUI extends JFrame{
 		panel.add(button);
 	}
 	public void addStopButton(JPanel panel, int x, int y, int w, int h){
-		JButton button = new JButton("stop");
+		JButton button = new JButton("▣");
 		button.setBounds(x, y, w, h);
 		button.setToolTipText("click this to stop");
 		button.addActionListener(new ActionListener(){
@@ -240,7 +240,7 @@ public class PlayerGUI extends JFrame{
 		panel.add(button);
 	}
 	public void addPrevButton(JPanel panel, int x, int y, int w, int h){
-		JButton button = new JButton("prev");
+		JButton button = new JButton("Ⅱ◀");
 		button.setBounds(x, y, w, h);
 		button.setToolTipText("click this to play previous file");
 		button.addActionListener(new ActionListener(){
@@ -252,7 +252,7 @@ public class PlayerGUI extends JFrame{
 		panel.add(button);
 	}
 	public void addNextButton(JPanel panel, int x, int y, int w, int h){
-		JButton button = new JButton("next");
+		JButton button = new JButton("▶Ⅱ");
 		button.setBounds(x, y, w, h);
 		button.setToolTipText("click this to play next file");
 		button.addActionListener(new ActionListener(){
@@ -275,7 +275,6 @@ public class PlayerGUI extends JFrame{
 		
 		panel.add(button);
 	}
-	
 	public static void main(String[] args){
 		SwingUtilities.invokeLater(new Runnable(){
 			public void run(){
