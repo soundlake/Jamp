@@ -1,4 +1,4 @@
-package jamp;
+package Jamp;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
