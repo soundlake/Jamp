@@ -15,6 +15,7 @@ import javax.swing.SwingUtilities;
 public class PlayerGUI extends JFrame{
 	private static final long serialVersionUID = 3987374733901113836L;
 	
+	protected Player player = new PlayerConcrete();
 	protected JMenuBar menubar = new JMenuBar();
 	public PlayerGUI(){
 		setTitle("Jamp - winamp like mp3 player");
@@ -49,7 +50,7 @@ public class PlayerGUI extends JFrame{
 		openMenuItem.setToolTipText("Open a file or folder");
 		openMenuItem.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
-				System.out.println("ToDo:PlayerGUI/addMenu_file/openMenuItem/");
+				player.open();
 			}
 		});
 		// make close item
@@ -58,7 +59,7 @@ public class PlayerGUI extends JFrame{
 		closeMenuItem.setToolTipText("close current file");
 		closeMenuItem.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
-				System.out.println("ToDo:PlayerGUI/addMenu_file/closeMenuItem/");
+				player.close();
 			}
 		});
 		// make quit item
@@ -67,7 +68,7 @@ public class PlayerGUI extends JFrame{
 		quitMenuItem.setToolTipText("Quit Jamp");
 		quitMenuItem.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
-				System.exit(0);
+				player.quit();
 			}
 		});
 		
@@ -90,7 +91,7 @@ public class PlayerGUI extends JFrame{
 		playMenuItem.setToolTipText("play current file");
 		playMenuItem.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
-				System.out.println("ToDo:PlayerGUI/addMenu_play/playMenuItem/");
+				player.play();
 			}
 		});
 		// make pause item
@@ -99,7 +100,7 @@ public class PlayerGUI extends JFrame{
 		pauseMenuItem.setToolTipText("puase current file");
 		pauseMenuItem.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
-				System.out.println("ToDo:PlayerGUI/addMenu_play/puaseMenuItem/");
+				player.pause();
 			}
 		});
 		// make stop item
@@ -108,7 +109,7 @@ public class PlayerGUI extends JFrame{
 		stopMenuItem.setToolTipText("stop current file");
 		stopMenuItem.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
-				System.out.println("ToDo:PlayerGUI/addMenu_play/stopMenuItem/");
+				player.stop();
 			}
 		});
 		// make fast forward item
@@ -117,7 +118,7 @@ public class PlayerGUI extends JFrame{
 		ffMenuItem.setToolTipText("fast forward current file");
 		ffMenuItem.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
-				System.out.println("ToDo:PlayerGUI/addMenu_play/ffMenuItem/");
+				player.fastForward();
 			}
 		});
 		// make rewind item
@@ -126,7 +127,7 @@ public class PlayerGUI extends JFrame{
 		rwMenuItem.setToolTipText("rewind current file");
 		rwMenuItem.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
-				System.out.println("ToDo:PlayerGUI/addMenu_play/rwMenuItem/");
+				player.rewind();
 			}
 		});
 		// make next item
@@ -135,7 +136,7 @@ public class PlayerGUI extends JFrame{
 		nextMenuItem.setToolTipText("jump to next song");
 		nextMenuItem.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
-				System.out.println("ToDo:PlayerGUI/addMenu_play/nextMenuItem/");
+				player.next();
 			}
 		});
 		// make previous item
@@ -144,7 +145,7 @@ public class PlayerGUI extends JFrame{
 		prevMenuItem.setToolTipText("jump to previous song");
 		prevMenuItem.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
-				System.out.println("ToDo:PlayerGUI/addMenu_play/prevMenuItem/");
+				player.prev();
 			}
 		});
 		
@@ -171,7 +172,7 @@ public class PlayerGUI extends JFrame{
 		helpMenuItem.setToolTipText("Some Help");
 		helpMenuItem.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
-				System.out.println("ToDo:PlayerGUI/addMenu_help/helpMenuItem/");
+				player.help();
 			}
 		});
 		// make bug report item
@@ -179,7 +180,7 @@ public class PlayerGUI extends JFrame{
 		reportMenuItem.setToolTipText("let us know the bug");
 		reportMenuItem.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
-				System.out.println("ToDo:PlayerGUI/addMenu_help/reportMenuItem/");
+				player.report();
 			}
 		});
 		// make close item
@@ -188,7 +189,7 @@ public class PlayerGUI extends JFrame{
 		aboutMenuItem.setToolTipText("about Jamp");
 		aboutMenuItem.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
-				System.out.println("ToDo:PlayerGUI/addMenu_help/aboutMenuItem/");
+				player.about();
 			}
 		});
 		
@@ -200,20 +201,79 @@ public class PlayerGUI extends JFrame{
 		
 		menubar.add(help);
 	}
+
 	public void addButton(JPanel panel){
-		addQuitButton(panel);
+		addPrevButton(panel, 10, 30, 80, 30);
+		addPlayPauseButton(panel, 80, 30, 80, 30);
+		addStopButton(panel, 150, 30, 80, 30);
+		addNextButton(panel, 220, 30, 80, 30);
+		addQuitButton(panel, 220, 80, 80, 30);
 	}
-	public void addQuitButton(JPanel panel){
-		JButton quitButton = new JButton("quit");
-		quitButton.setBounds(220, 80, 80, 30);
-		quitButton.setToolTipText("click this to quit");
-		quitButton.addActionListener(new ActionListener(){
+	public void addPlayPauseButton(JPanel panel, int x, int y, int w, int h){
+		final JButton button = new JButton("▶");
+		button.setBounds(x, y, w, h);
+		button.setToolTipText("click this to play/pause");
+		button.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
-				System.exit(0);
+				if(player.isPlaying()){
+					button.setText("▶");
+					player.pause();
+				} else {
+					button.setText("Ⅱ");
+					player.play();					
+				}
 			}
 		});
 		
-		panel.add(quitButton);
+		panel.add(button);
+	}
+	public void addStopButton(JPanel panel, int x, int y, int w, int h){
+		JButton button = new JButton("▣");
+		button.setBounds(x, y, w, h);
+		button.setToolTipText("click this to stop");
+		button.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent event){
+				player.stop();
+			}
+		});
+		
+		panel.add(button);
+	}
+	public void addPrevButton(JPanel panel, int x, int y, int w, int h){
+		JButton button = new JButton("Ⅱ◀");
+		button.setBounds(x, y, w, h);
+		button.setToolTipText("click this to play previous file");
+		button.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent event){
+				player.prev();
+			}
+		});
+		
+		panel.add(button);
+	}
+	public void addNextButton(JPanel panel, int x, int y, int w, int h){
+		JButton button = new JButton("▶Ⅱ");
+		button.setBounds(x, y, w, h);
+		button.setToolTipText("click this to play next file");
+		button.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent event){
+				player.next();
+			}
+		});
+		
+		panel.add(button);
+	}
+	public void addQuitButton(JPanel panel, int x, int y, int w, int h){
+		JButton button = new JButton("quit");
+		button.setBounds(x, y, w, h);
+		button.setToolTipText("click this to quit");
+		button.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent event){
+				player.quit();
+			}
+		});
+		
+		panel.add(button);
 	}
 	public static void main(String[] args){
 		SwingUtilities.invokeLater(new Runnable(){

@@ -10,4 +10,6 @@
 <fullyQualifiedTypeName name="javax.swing.JMenu"/>
 <fullyQualifiedTypeName name="java.awt.event.KeyEvent"/>
 <fullyQualifiedTypeName name="javax.swing.JMenuItem"/>
+<fullyQualifiedTypeName name="javax.sound.sampled.AudioFileFormat"/>
+<fullyQualifiedTypeName name="com.sun.tools.apt.main.Main"/>
 </qualifiedTypeNameHistroy>
