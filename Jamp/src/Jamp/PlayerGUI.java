@@ -210,16 +210,16 @@ public class PlayerGUI extends JFrame{
 		addQuitButton(panel, 220, 80, 80, 30);
 	}
 	public void addPlayPauseButton(JPanel panel, int x, int y, int w, int h){
-		final JButton button = new JButton("▶");
+		final JButton button = new JButton("��");
 		button.setBounds(x, y, w, h);
 		button.setToolTipText("click this to play/pause");
 		button.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
 				if(player.isPlaying()){
-					button.setText("▶");
+					button.setText("��");
 					player.pause();
 				} else {
-					button.setText("Ⅱ");
+					button.setText("��");
 					player.play();					
 				}
 			}
@@ -228,7 +228,7 @@ public class PlayerGUI extends JFrame{
 		panel.add(button);
 	}
 	public void addStopButton(JPanel panel, int x, int y, int w, int h){
-		JButton button = new JButton("▣");
+		JButton button = new JButton("��");
 		button.setBounds(x, y, w, h);
 		button.setToolTipText("click this to stop");
 		button.addActionListener(new ActionListener(){
@@ -240,7 +240,7 @@ public class PlayerGUI extends JFrame{
 		panel.add(button);
 	}
 	public void addPrevButton(JPanel panel, int x, int y, int w, int h){
-		JButton button = new JButton("Ⅱ◀");
+		JButton button = new JButton("�△�");
 		button.setBounds(x, y, w, h);
 		button.setToolTipText("click this to play previous file");
 		button.addActionListener(new ActionListener(){
@@ -252,7 +252,7 @@ public class PlayerGUI extends JFrame{
 		panel.add(button);
 	}
 	public void addNextButton(JPanel panel, int x, int y, int w, int h){
-		JButton button = new JButton("▶Ⅱ");
+		JButton button = new JButton("�뜯뀫");
 		button.setBounds(x, y, w, h);
 		button.setToolTipText("click this to play next file");
 		button.addActionListener(new ActionListener(){

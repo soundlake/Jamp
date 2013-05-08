@@ -1,6 +1,9 @@
 package Jamp;
 
 import java.io.*;
+import javax.swing.*;
+import javax.swing.filechooser.*;
+
 import javax.sound.sampled.*;
 
 public class PlayerConcrete implements Player{
@@ -11,7 +14,7 @@ public class PlayerConcrete implements Player{
     int BUFFER_SIZE = 64*1024;  // 64 KB
     byte[] sampledData = new byte[BUFFER_SIZE];
     boolean puased = false; 
-	File soundFile = new File("testFiles/test.wav");
+	File soundFile = null;
     
 
 	@Override
@@ -28,14 +31,14 @@ public class PlayerConcrete implements Player{
 			public void run() {
 		        // Set up an audio input stream piped from the sound file.
 			    try {
-			        //soundFile로 부터 AudioInputStream 객체 생성
+			        //soundFile濡�遺�꽣 AudioInputStream 媛앹껜 �앹꽦
 			        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundFile);
 			        AudioFormat audioFormat = audioInputStream.getFormat();
 			        DataLine.Info info = new DataLine.Info(SourceDataLine.class, audioFormat);
 			        soundLine = (SourceDataLine) AudioSystem.getLine(info);
 			        soundLine.open(audioFormat);
 			        soundLine.start();
-			        //입력이 끝날때 까지 nByte단위로 반복적으로 읽어들인다.
+			        //�낅젰���앸궇��源뚯� nByte�⑥쐞濡�諛섎났�곸쑝濡��쎌뼱�ㅼ씤��
 			        while (nBytesRead != -1 && !puased) {
 			            nBytesRead = audioInputStream.read(sampledData, 0, sampledData.length);
 			            if (nBytesRead >= 0) {
@@ -100,9 +103,15 @@ public class PlayerConcrete implements Player{
 		
 	}
 	@Override
-	public void open() {
+	 public void open() {
 		// TODO Auto-generated method stub
-		
+		JFileChooser chooser = new JFileChooser();
+		FileNameExtensionFilter filter = new FileNameExtensionFilter(
+		"wav files", "wav"); //description,......확장자
+		chooser.setFileFilter(filter); //필터 셋팅
+		if(chooser.showOpenDialog(chooser) == JFileChooser.APPROVE_OPTION) {
+		soundFile = chooser.getSelectedFile();
+		}
 	}
 	@Override
 	public void close() {
