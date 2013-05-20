@@ -103,21 +103,21 @@ public class PlayerConcrete implements Player{
 		
 	}
 	@Override
-	 public void open() {
-		// TODO Auto-generated method stub
-		JFileChooser chooser = new JFileChooser();
-		FileNameExtensionFilter filter = new FileNameExtensionFilter(
-		"wav files", "wav"); //description,......확장자
-		chooser.setFileFilter(filter); //필터 셋팅
-		if(chooser.showOpenDialog(chooser) == JFileChooser.APPROVE_OPTION) {
-		soundFile = chooser.getSelectedFile();
-		}
-	}
-	@Override
-	public void close() {
-		// TODO Auto-generated method stub
-		
-	}
+    public void open() {
+        // TODO Auto-generated method stub
+        JFileChooser chooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+        "wav files", "wav"); //description,......확장자
+        chooser.setFileFilter(filter); //필터 셋팅
+        if(chooser.showOpenDialog(chooser) == JFileChooser.APPROVE_OPTION) {
+        soundFile = chooser.getSelectedFile();
+        }
+    }
+    @Override
+    public void close() {
+        // TODO Auto-generated method stub
+        	
+    }
 	@Override
 	public void help() {
 		// TODO Auto-generated method stub
