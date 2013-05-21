@@ -1,4 +1,4 @@
-package Jamp;
+package jamp;
 
 import java.io.*;
 import javax.swing.*;

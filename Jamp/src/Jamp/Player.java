@@ -1,4 +1,4 @@
-package Jamp;
+package jamp;
 
 public interface Player {
 	// play
